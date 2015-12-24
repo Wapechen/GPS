@@ -2,21 +2,17 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-import csv
 
 def gngsv(input_filename):
     f = open(input_filename, "r")
     name = os.path.splitext(input_filename)[0]
     fw = open(name+"GN.txt", "w")
     fgp = open(name+"GP.csv", "w")
-    writer = csv.writer(fgp)
-    writer.writerow(['星系', '數目', '編號', '總數', 'PRN', '高度', '方位角', 'CN'])
+    fgp.write("星系,數目,編號,總數,PRN,高度,方位角,CN\n")
     fgl = open(name+"GL.csv", "w")
-    writer = csv.writer(fgl)
-    writer.writerow(['星系', '數目', '編號', '總數', 'PRN', '高度', '方位角', 'CN'])
+    fgl.write("星系,數目,編號,總數,PRN,高度,方位角,CN\n")
     fbd = open(name+"BD.csv", "w")
-    writer = csv.writer(fbd)
-    writer.writerow(['星系', '數目', '編號', '總數', 'PRN', '高度', '方位角', 'CN'])
+    fbd.write("星系,數目,編號,總數,PRN,高度,方位角,CN\n")
     if f == None:
         return
     lines = f.readlines()
@@ -28,11 +24,11 @@ def gngsv(input_filename):
         if "GLGSV" in line:
             #print line,
             fw.write(line)
-            fgl.write(line)
+            fgl.write(line),
         if "BDGSV" in line:
             #print line,
             fw.write(line)
-            fbd.write(line)
+            fbd.write(line),
     f.close()
     fw.close()
     
